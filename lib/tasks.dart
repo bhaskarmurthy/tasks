@@ -12,64 +12,58 @@ class Tasks extends StatelessWidget {
     return ScopedModelDescendant<TaskListModel>(
         builder: (context, child, model) {
       return Scaffold(
-        body: CustomScrollView(
-          slivers: <Widget>[
-            SliverAppBar(
-              centerTitle: false,
-              backgroundColor: ThemeData.light().canvasColor,
-              title: Text(
+        body: ListView.separated(
+          itemCount: model.tasks.length + 1,
+          itemBuilder: (BuildContext context, int index) {
+            if (index == 0) {
+              return Text(
                 this.title,
-                style: Theme.of(context).textTheme.title,
+                style: Theme.of(context).textTheme.headline,
                 maxLines: 1,
-              ),
-            ),
-            SliverList(
-              delegate: SliverChildBuilderDelegate(
-                (BuildContext context, int index) {
-                  final Task task = model.tasks[index];
-                  return Dismissible(
-                    key: Key(task.id),
-                    child: ListTile(
-                      leading: (task.checked)
-                          ? Icon(Icons.check)
-                          : Icon(Icons.radio_button_unchecked),
-                      title: Text(
-                        task.title,
+              );
+            }
+
+            final Task task = model.tasks[index - 1];
+            return Dismissible(
+              key: Key(task.id),
+              child: ListTile(
+                leading: (task.checked)
+                    ? Icon(Icons.check)
+                    : Icon(Icons.radio_button_unchecked),
+                title: Text(
+                  task.title,
+                  style: task.checked
+                      ? TextStyle(
+                          decoration: TextDecoration.combine(
+                              [TextDecoration.lineThrough]))
+                      : null,
+                ),
+                subtitle: (task.description != null)
+                    ? Text(
+                        task.description,
                         style: task.checked
                             ? TextStyle(
                                 decoration: TextDecoration.combine(
                                     [TextDecoration.lineThrough]))
                             : null,
-                      ),
-                      subtitle: (task.description != null)
-                          ? Text(
-                              task.description,
-                              style: task.checked
-                                  ? TextStyle(
-                                      decoration: TextDecoration.combine(
-                                          [TextDecoration.lineThrough]))
-                                  : null,
-                            )
-                          : null,
-                      onTap: () {
-                        var toggledTask = Task(task.title,
-                            description: task.description,
-                            checked: !task.checked,
-                            id: task.id);
-                        model.updateTask(toggledTask);
-                      },
-                    ),
-                    direction: DismissDirection.endToStart,
-                    onDismissed: (direction) {
-                      model.removeTask(task);
-                    },
-                    background: Container(color: Theme.of(context).accentColor),
-                  );
+                      )
+                    : null,
+                onTap: () {
+                  var toggledTask = Task(task.title,
+                      description: task.description,
+                      checked: !task.checked,
+                      id: task.id);
+                  model.updateTask(toggledTask);
                 },
-                childCount: model.tasks.length,
               ),
-            )
-          ],
+              direction: DismissDirection.endToStart,
+              onDismissed: (direction) {
+                model.removeTask(task);
+              },
+              background: Container(color: Theme.of(context).accentColor),
+            );
+          },
+          separatorBuilder: (BuildContext context, int index) => Divider(),
         ),
       );
     });
