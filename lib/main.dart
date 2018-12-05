@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:scoped_model/scoped_model.dart';
 import 'package:rounded_modal/rounded_modal.dart';
-import 'tasks.dart';
+import 'package:tasks/task_list_model.dart';
+import 'package:tasks/tasks.dart';
 
 void main() => runApp(new App());
 
@@ -21,7 +23,10 @@ class Main extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      body: Tasks('My Tasks'),
+      body: ScopedModel<TaskListModel>(
+        model: TaskListModel(),
+        child: Tasks('My Tasks'),
+      ),
       bottomNavigationBar: BottomAppBar(
           child: new Row(
               mainAxisSize: MainAxisSize.max,
