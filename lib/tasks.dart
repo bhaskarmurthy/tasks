@@ -16,10 +16,13 @@ class Tasks extends StatelessWidget {
           itemCount: model.tasks.length + 1,
           itemBuilder: (BuildContext context, int index) {
             if (index == 0) {
-              return Text(
-                this.title,
-                style: Theme.of(context).textTheme.headline,
-                maxLines: 1,
+              return Container(
+                child: Text(
+                  this.title,
+                  style: Theme.of(context).textTheme.headline,
+                  maxLines: 1,
+                ),
+                padding: EdgeInsets.all(16),
               );
             }
 
