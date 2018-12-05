@@ -9,7 +9,9 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return new MaterialApp(
       title: 'A taskwarrior powered task list',
-      theme: new ThemeData(primarySwatch: Colors.blue),
+      theme: new ThemeData(
+        primarySwatch: Colors.red,
+      ),
       home: new Main(),
     );
   }
@@ -19,7 +21,7 @@ class Main extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      body: Tasks(),
+      body: Tasks('My Tasks'),
       bottomNavigationBar: BottomAppBar(
           child: new Row(
               mainAxisSize: MainAxisSize.max,
@@ -52,32 +54,30 @@ class Main extends StatelessWidget {
         context: context,
         builder: (BuildContext context) {
           return SafeArea(
-              child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    ListTile(
-                      leading: CircleAvatar(
-                        child: Icon(Icons.person),
-                        radius: 16,
-                      ),
-                      title: Text('Johnny Appleseed'),
-                      onTap: () {},
-                    ),
-                    Divider(),
-                    ListTile(
-                      title: Text('My tasks',
-                          style: TextStyle(fontWeight: FontWeight.bold)),
-                    ),
-                    ListTile(
-                      title: Text('@work'),
-                    ),
-                    Divider(),
-                    ListTile(
-                        leading: new Icon(Icons.add),
-                        title: new Text('Create new list'),
-                        onTap: () => {}),
-                    Divider(),
-                  ]));
+              child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
+            ListTile(
+              leading: CircleAvatar(
+                child: Icon(Icons.person),
+                radius: 16,
+              ),
+              title: Text('Johnny Appleseed'),
+              onTap: () {},
+            ),
+            Divider(),
+            ListTile(
+              title: Text('My tasks',
+                  style: TextStyle(fontWeight: FontWeight.bold)),
+            ),
+            ListTile(
+              title: Text('@work'),
+            ),
+            Divider(),
+            ListTile(
+                leading: new Icon(Icons.add),
+                title: new Text('Create new list'),
+                onTap: () => {}),
+            Divider(),
+          ]));
         });
   }
 
@@ -88,30 +88,36 @@ class Main extends StatelessWidget {
           return SafeArea(
               child: Container(
                   padding: EdgeInsets.all(16),
-                  child: Column(
-                      mainAxisSize: MainAxisSize.min,
+                  child:
+                      Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
+                    TextField(
+                      autofocus: true,
+                      decoration: InputDecoration(
+                        hintText: 'New task',
+                        focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(style: BorderStyle.none)),
+                        enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(style: BorderStyle.none)),
+                        disabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(style: BorderStyle.none)),
+                        errorBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(style: BorderStyle.none)),
+                      ),
+                    ),
+                    Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        TextField(
-                          autofocus: true,
-                          decoration: InputDecoration(
-                            hintText: 'New task',
-                            focusedBorder: UnderlineInputBorder(borderSide: BorderSide(style: BorderStyle.none)),
-                            enabledBorder: UnderlineInputBorder(borderSide: BorderSide(style: BorderStyle.none)),
-                            disabledBorder: UnderlineInputBorder(borderSide: BorderSide(style: BorderStyle.none)),
-                            errorBorder: UnderlineInputBorder(borderSide: BorderSide(style: BorderStyle.none)),
-                          ),
-                        ),
-                        Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            IconButton(icon: Icon(Icons.add_circle, color: Colors.blue), onPressed: () {}),
-                            FlatButton(child: Text('Save'), onPressed: () {}, textColor: Colors.blue)
-                          ],
-                        )
-                      ])
-              )
-          );
+                        IconButton(
+                            icon: Icon(Icons.add_circle, color: Colors.blue),
+                            onPressed: () {}),
+                        FlatButton(
+                            child: Text('Save'),
+                            onPressed: () {},
+                            textColor: Colors.blue)
+                      ],
+                    )
+                  ])));
         });
   }
 }
