@@ -4,7 +4,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:tasks/models/app_state.dart';
 import 'package:tasks/models/task.dart';
 import 'package:tasks/views/task_list.dart';
-import 'package:tasks/actions.dart';
+import 'package:tasks/actions/tasks.dart';
 
 class TaskListContainer extends StatelessWidget {
   @override

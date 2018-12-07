@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:redux/redux.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:tasks/models/app_state.dart';
-import 'package:tasks/reducers.dart';
+import 'package:tasks/reducers/app.dart';
 import 'package:tasks/views/home.dart';
 
 void main() => runApp(new App());
