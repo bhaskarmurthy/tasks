@@ -1,5 +1,3 @@
-import 'package:flutter/widgets.dart';
-import 'package:scoped_model/scoped_model.dart';
 import 'package:uuid/uuid.dart';
 
 class Task {
@@ -12,6 +10,7 @@ class Task {
       : this.id = id ?? Uuid().v4();
 }
 
+/*
 class TaskListModel extends Model {
   final List<Task> _tasks = [
     Task('Hello, world'),
@@ -41,3 +40,4 @@ class TaskListModel extends Model {
     notifyListeners();
   }
 }
+*/
