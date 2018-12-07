@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
-import 'package:tasks/task_list_model.dart';
+import 'package:tasks/models/task_list_model.dart';
+import 'package:tasks/views/task_list_item.dart';
 
 class Tasks extends StatelessWidget {
   final String title;
@@ -27,44 +28,8 @@ class Tasks extends StatelessWidget {
             }
 
             final Task task = model.tasks[index - 1];
-            return Dismissible(
-              key: Key(task.id),
-              child: ListTile(
-                leading: (task.checked)
-                    ? Icon(Icons.check)
-                    : Icon(Icons.radio_button_unchecked),
-                title: Text(
-                  task.title,
-                  style: task.checked
-                      ? TextStyle(
-                          decoration: TextDecoration.combine(
-                              [TextDecoration.lineThrough]))
-                      : null,
-                ),
-                subtitle: (task.description != null)
-                    ? Text(
-                        task.description,
-                        style: task.checked
-                            ? TextStyle(
-                                decoration: TextDecoration.combine(
-                                    [TextDecoration.lineThrough]))
-                            : null,
-                      )
-                    : null,
-                onTap: () {
-                  var toggledTask = Task(task.title,
-                      description: task.description,
-                      checked: !task.checked,
-                      id: task.id);
-                  model.updateTask(toggledTask);
-                },
-              ),
-              direction: DismissDirection.endToStart,
-              onDismissed: (direction) {
-                model.removeTask(task);
-              },
-              background: Container(color: Theme.of(context).accentColor),
-            );
+            return TaskListItem(
+                task.id, task.title, task.description, task.checked);
           },
           separatorBuilder: (BuildContext context, int index) => Divider(),
         ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:rounded_modal/rounded_modal.dart';
-import 'package:tasks/task_list_model.dart';
+import 'package:tasks/models/task_list_model.dart';
 import 'package:tasks/tasks.dart';
 
 void main() => runApp(new App());
