@@ -1,7 +1,5 @@
 import 'package:tasks/models/task.dart';
 
-enum Actions { ADD_TASK, UPDATE_TASK, DELETE_TASK }
-
 class AddTaskAction {
   final Task task;
 
