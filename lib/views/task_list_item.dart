@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class TaskListItem extends StatelessWidget {
+class TaskListItemView extends StatelessWidget {
   final String id;
   final String title;
   final String description;
   final bool checked;
 
-  TaskListItem(this.id, this.title, this.description, this.checked);
+  TaskListItemView(this.id, this.title, this.description, this.checked);
 
   @override
   Widget build(BuildContext context) {

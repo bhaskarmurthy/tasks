@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rounded_modal/rounded_modal.dart';
 import 'package:tasks/containers/task_list.dart';
+import 'package:tasks/containers/add_task.dart';
 
 class HomeView extends StatelessWidget {
   @override
@@ -70,39 +71,7 @@ class HomeView extends StatelessWidget {
     showRoundedModalBottomSheet(
         context: context,
         builder: (BuildContext context) {
-          return SafeArea(
-              child: Container(
-                  padding: EdgeInsets.all(16),
-                  child:
-                      Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
-                    TextField(
-                      autofocus: true,
-                      decoration: InputDecoration(
-                        hintText: 'New task',
-                        focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(style: BorderStyle.none)),
-                        enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(style: BorderStyle.none)),
-                        disabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(style: BorderStyle.none)),
-                        errorBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(style: BorderStyle.none)),
-                      ),
-                    ),
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        IconButton(
-                            icon: Icon(Icons.add_circle, color: Colors.blue),
-                            onPressed: () {}),
-                        FlatButton(
-                            child: Text('Save'),
-                            onPressed: () {},
-                            textColor: Colors.blue)
-                      ],
-                    )
-                  ])));
+          return AddTaskContainer();
         });
   }
 }

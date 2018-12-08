@@ -16,7 +16,7 @@ class App extends StatelessWidget {
     return StoreProvider(
       store: store,
       child: MaterialApp(
-        title: 'A taskwarrior powered task list',
+        title: 'Tasks',
         theme: new ThemeData(
           primarySwatch: Colors.red,
         ),

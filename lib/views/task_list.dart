@@ -32,7 +32,7 @@ class TaskListView extends StatelessWidget {
           }
 
           final Task task = tasks[index - 1];
-          return TaskListItem(
+          return TaskListItemView(
               task.id, task.title, task.description, task.checked);
         },
         separatorBuilder: (BuildContext context, int index) => Divider(),
