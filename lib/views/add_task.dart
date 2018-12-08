@@ -39,6 +39,7 @@ class _AddTaskState extends State<AddTaskView> {
             ),
             onSubmitted: (String title) {
               _onAddTask();
+              Navigator.pop(context);
             },
             onChanged: (String title) {
               setState(() {
@@ -56,7 +57,10 @@ class _AddTaskState extends State<AddTaskView> {
                   onPressed: () {}),
               FlatButton(
                   child: Text('Save'),
-                  onPressed: () => this._onAddTask(),
+                  onPressed: () {
+                    this._onAddTask();
+                    Navigator.pop(context);
+                  },
                   textColor: Theme.of(context).accentColor)
             ],
           )
